@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MtgClientService } from './clients/mtgclient/mtg-client.service';
+import { MtgOneCardResponse } from './clients/mtgclient/mtg-one-card-response';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,14 @@ import { MtgClientService } from './clients/mtgclient/mtg-client.service';
 })
 export class AppComponent implements OnInit {
 
-  public mtgCard;
+  private mtgCard: MtgOneCardResponse;
 
   constructor(
     private mtgcl: MtgClientService) {}
 
   ngOnInit() {
     this.mtgcl.cardList(null).
-      subscribe(data => this.mtgCard = data.card.name);
+      subscribe(data => this.mtgCard = data);
   }
 
 }
